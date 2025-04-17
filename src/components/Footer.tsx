@@ -20,6 +20,16 @@ export const Footer: React.FC<Props> = ({ activeCount, completedCount, filterSel
                 filterSelected={filterSelected}
                 handleFilterChange={handleFilterChange}
             />
+
+            {
+                completedCount > 0 && (
+                    <button
+                        onClick={onClearCompleted}
+                    >
+                        Clear completed
+                    </button>
+                )
+            }
         </footer>
     )
 }
