@@ -1,25 +1,25 @@
 import { Filters } from "./Filters"
-import { filterValue } from "../types"
+import { useTodoStore } from "../stores/todoStore"
 
-interface Props {
-    activeCount: number
-    completedCount: number
-    filterSelected: filterValue
-    onClearCompleted: () => void
-    handleFilterChange: (filter: filterValue) => void
-}
 
-export const Footer: React.FC<Props> = ({ activeCount, completedCount, filterSelected, onClearCompleted, handleFilterChange }) => {
+export const Footer: React.FC = () => {
+    const todos = useTodoStore(state => state.todos)
+    const handleClearAllcompleted = useTodoStore(state => state.handleClearAllcompleted)
+
+    const activeCount = todos.filter(todo => !todo.completed).length
+    const completedCount = todos.length - activeCount
+
+    const onClearCompleted = () => {
+        handleClearAllcompleted()
+    }
+
     return (
         <footer>
             <span>
                 <strong>{activeCount}</strong> Todos left
             </span>
 
-            <Filters 
-                filterSelected={filterSelected}
-                handleFilterChange={handleFilterChange}
-            />
+            <Filters />
 
             {
                 completedCount > 0 && (

@@ -1,11 +1,21 @@
+import { useTodoStore } from "../stores/todoStore"
 import { type todoCompleted, type todoId, type Todo as TodoTypes } from "../types"
 
-interface Props extends TodoTypes {
-    removeTodo: ({ id }: todoId) => void
-    completeTodo: ({ id, completed } : { id: todoId, completed: todoCompleted}) => void
-}
+type Props = TodoTypes
 
-export const Todo: React.FC<Props> = ({ id, title, completed, removeTodo, completeTodo }) => {
+export const Todo: React.FC<Props> = ({ id, title, completed }) => {
+    const handleRemove = useTodoStore((state) => state.handleRemove)
+    const handleComplete = useTodoStore((state) => state.handleComplete)
+
+    const removeTodo = ({ id } : todoId) => {
+        handleRemove(id)
+    }
+
+    const completeTodo = ({ id, completed } : { id: todoId, completed: todoCompleted}) => {
+        handleComplete({id, completed})
+    }
+
+    
     return (
         <div>
             <input 
@@ -16,7 +26,7 @@ export const Todo: React.FC<Props> = ({ id, title, completed, removeTodo, comple
             <label>{title}</label>
             <button 
                 onClick={() => removeTodo({ id })}
-            />
+            >Delete</button>
         </div>
     )
 }

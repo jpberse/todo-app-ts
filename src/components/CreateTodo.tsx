@@ -1,12 +1,14 @@
 import React, { useState } from "react"
-import { todoTitle } from "../types"
+import { type todoTitle } from "../types"
+import { useTodoStore } from "../stores/todoStore"
 
-interface Props {
-    saveTodo: (title: todoTitle) => void
-}
-
-export const CreateTodo: React.FC<Props> = ({ saveTodo }) => {
+export const CreateTodo: React.FC = () => {
     const [inputValue, setInputValue] = useState('')
+    const handleAddTodo = useTodoStore((state) => state.handleAddTodo)
+
+    const saveTodo = ({ title }: todoTitle) => {
+        handleAddTodo(title)
+    }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()

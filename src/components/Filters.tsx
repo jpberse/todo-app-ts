@@ -1,12 +1,15 @@
 import { FILTER_BUTTONS } from "../consts"
+import { useTodoStore } from "../stores/todoStore"
 import { type filterValue } from "../types"
 
-interface Props {
-    filterSelected: filterValue
-    handleFilterChange: (filter: filterValue) => void 
-}
+export const Filters: React.FC = () => {
+    const filterSelected = useTodoStore((state) => state.filter)
+    const handleFilterChange = useTodoStore((state) => state.handleFilterChange)
 
-export const Filters: React.FC<Props> = ({ filterSelected,  handleFilterChange }) => {
+    const filterChange = (filterChange : filterValue) => {
+        handleFilterChange(filterChange)
+    }
+
     return (
         <ul>
             {
@@ -18,7 +21,7 @@ export const Filters: React.FC<Props> = ({ filterSelected,  handleFilterChange }
                                 className={ key === filterSelected ? 'selected' : ''}
                                 onClick={(e) => {
                                     e.preventDefault()
-                                    handleFilterChange(key as filterValue)
+                                    filterChange(key as filterValue)
                                 }}
                             >
                                 {literal}
