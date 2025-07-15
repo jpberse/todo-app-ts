@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { mockTodos } from '../mock/mockTodos'
 import { type filterValue, type ListOfTodos, type todoCompleted, type todoId, type todoTitle } from '../types'
 import { TODO_FILTERS } from '../consts'
 import { createJSONStorage, persist } from 'zustand/middleware'

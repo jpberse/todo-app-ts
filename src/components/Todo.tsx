@@ -17,16 +17,21 @@ export const Todo: React.FC<Props> = ({ id, title, completed }) => {
 
     
     return (
-        <div>
-            <input 
-                type="checkbox"
-                checked={completed}
-                onChange={(event) => {completeTodo({ id, completed: event.target.checked})}}
-            />
-            <label>{title}</label>
+        <>
+            <div className="todo-item">
+                <input 
+                    type="checkbox"
+                    checked={completed}
+                    onChange={(event) => {completeTodo({ id, completed: event.target.checked})}}
+                />
+                <label>
+                    {title}
+                </label>
+            </div>
             <button 
                 onClick={() => removeTodo({ id })}
-            >Delete</button>
-        </div>
+                className="button-close"
+            />
+        </>
     )
 }

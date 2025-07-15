@@ -13,19 +13,21 @@ export const Todos: React.FC = () => {
     })
     
     return(
-        <ul>
-            {filteredTodos.map(todo => (
-                <li key={todo.id} 
-                    className={`${todo.completed ? 'completed' : ''}`}>
-                    {todo.title}
-                    <Todo
-                        key={todo.id}
-                        id={todo.id}
-                        title={todo.title}
-                        completed={todo.completed}
+        <section>
+            <ul className="todo-list">
+                {filteredTodos.map(todo => (
+                    <li key={todo.id} 
+                        className={`${todo.completed ? 'completed' : ''}`}>
+                        <Todo
+                            key={todo.id}
+                            id={todo.id}
+                            title={todo.title}
+                            completed={todo.completed}
                         />
-                </li>
-            ))}
-        </ul>
+                    </li>
+                ))}
+            </ul>
+        </section>
+
     )
 }

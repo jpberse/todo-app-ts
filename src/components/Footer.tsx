@@ -15,11 +15,7 @@ export const Footer: React.FC = () => {
 
     return (
         <footer>
-            <span>
-                <strong>{activeCount}</strong> Todos left
-            </span>
-
-            <Filters />
+            <Filters/>
 
             {
                 completedCount > 0 && (

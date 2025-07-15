@@ -11,7 +11,7 @@ export const Filters: React.FC = () => {
     }
 
     return (
-        <ul>
+        <ul className="filters">
             {
                 Object.entries(FILTER_BUTTONS).map(([key, {literal, href}]) => {
                     return (
